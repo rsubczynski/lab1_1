@@ -15,6 +15,7 @@
  */
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
+import pl.com.bottega.ecommerce.sales.domain.offer.entry.Discount;
 import pl.com.bottega.ecommerce.sales.domain.offer.entry.Product;
 
 import java.math.BigDecimal;
@@ -22,23 +23,20 @@ import java.util.Date;
 
 public class OfferItem {
 
+	public Product getProduct() {
+		return product;
+	}
+
 	private Product product;
-	// discount
-	private String discountCause;
+	private Discount discount;
 
-	private BigDecimal discount;
-
-//	public OfferItem(String productId, BigDecimal productPrice, String productName,
-//			Date productSnapshotDate, String productType, int quantity) {
-//		this(productId, productPrice, productName, productSnapshotDate, productType, quantity, null, null);
-//	}
-
-	public OfferItem(Product product) {
+	public OfferItem(Product product, Discount discount) {
 		this.product = product;
+		this.discount = discount;
 
 		BigDecimal discountValue = new BigDecimal(0);
 		if (discount != null)
-			discountValue = discountValue.subtract(discount);
+			discountValue = discountValue.subtract(discount.getDiscount());
 
 		product.setTotalCost(product.getProductPrice().multiply(new BigDecimal(product.getQuantity())).subtract(discountValue)) ;
 	}
@@ -48,7 +46,7 @@ public class OfferItem {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((discount == null) ? 0 : discount.hashCode());
+				+ ((discount.getDiscount() == null) ? 0 : discount.getDiscount().hashCode());
 		result = prime * result + ((product.getProductName() == null) ? 0 : product.getProductName().hashCode());
 		result = prime * result + ((product.getProductPrice() == null) ? 0 : product.getProductPrice().hashCode());
 		result = prime * result
@@ -69,10 +67,10 @@ public class OfferItem {
 		if (getClass() != obj.getClass())
 			return false;
 		OfferItem other = (OfferItem) obj;
-		if (discount == null) {
-			if (other.discount != null)
+		if (discount.getDiscount() == null) {
+			if (other.discount.getDiscount() != null)
 				return false;
-		} else if (!discount.equals(other.discount))
+		} else if (!discount.getDiscount().equals(other.discount.getDiscount()))
 			return false;
 		if (product.getProductName() == null) {
 			if (other.product.getProductName() != null)
