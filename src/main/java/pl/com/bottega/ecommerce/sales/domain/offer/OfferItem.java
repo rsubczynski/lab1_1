@@ -23,10 +23,6 @@ import java.util.Date;
 
 public class OfferItem {
 
-	public Product getProduct() {
-		return product;
-	}
-
 	private Product product;
 	private Discount discount;
 
@@ -56,6 +52,10 @@ public class OfferItem {
 		result = prime * result
 				+ ((product.getTotalCost() == null) ? 0 : product.getTotalCost().hashCode());
 		return result;
+	}
+
+	public Product getProduct() {
+		return product;
 	}
 
 	@Override
