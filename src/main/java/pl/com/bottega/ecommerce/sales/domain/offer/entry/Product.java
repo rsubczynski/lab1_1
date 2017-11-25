@@ -17,6 +17,17 @@ public class Product {
 
     private int quantity;
 
+    public Product(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate, String productType, int quantity, BigDecimal totalCost, String currency) {
+        this.productId = productId;
+        this.productPrice = productPrice;
+        this.productName = productName;
+        this.productSnapshotDate = productSnapshotDate;
+        this.productType = productType;
+        this.quantity = quantity;
+        this.totalCost = totalCost;
+        this.currency = currency;
+    }
+
     public void setTotalCost(BigDecimal totalCost) {
         this.totalCost = totalCost;
     }
