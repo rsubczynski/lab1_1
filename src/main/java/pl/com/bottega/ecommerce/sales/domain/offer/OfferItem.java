@@ -73,7 +73,6 @@ public class OfferItem {
         if (!IsThisSameString(other))
             return false;
 
-
         return true;
     }
 
@@ -125,9 +124,9 @@ public class OfferItem {
      * @return
      */
     public boolean sameAs(OfferItem other, double delta) {
-        isValidStringFiled(productEntry.getProductName(),other.productEntry.getProductName());
-        isValidStringFiled(productEntry.getProductId(),other.productEntry.getProductId());
-        isValidBigDecimalFiled(productEntry.getProductPrice(),other.productEntry.getProductPrice());
+        isValidStringFiled(productEntry.getProductName(), other.productEntry.getProductName());
+        isValidStringFiled(productEntry.getProductId(), other.productEntry.getProductId());
+        isValidBigDecimalFiled(productEntry.getProductPrice(), other.productEntry.getProductPrice());
 
         if (!IsThisSameInt(other))
             return false;
@@ -135,23 +134,19 @@ public class OfferItem {
         if (!IsThisSameString(other))
             return false;
 
+        return IsDeltaInnerZero(other, delta);
+    }
+
+    private boolean IsDeltaInnerZero(OfferItem other, double delta) {
         BigDecimal max, min;
-        if (productEntry.getTotalCost().compareTo(other.productEntry.getTotalCost()) > 0) {
-            max = productEntry.getTotalCost();
-            min = other.productEntry.getTotalCost();
-        } else {
-            max = other.productEntry.getTotalCost();
-            min = productEntry.getTotalCost();
-        }
+        min = productEntry.getTotalCost().compareTo(other.productEntry.getTotalCost()) > 0 ? other.productEntry.getTotalCost() : productEntry.getTotalCost();
+
+        max = productEntry.getTotalCost().compareTo(other.productEntry.getTotalCost()) > 0 ? productEntry.getTotalCost() : other.productEntry.getTotalCost();
 
         BigDecimal difference = max.subtract(min);
         BigDecimal acceptableDelta = max.multiply(new BigDecimal(delta / 100));
 
         return acceptableDelta.compareTo(difference) > 0;
-    }
-
-    private boolean isThisSameBigDecimal(OfferItem other) {
-        return productEntry.getProductId().equals(other.productEntry.getProductId());
     }
 
     public Product getProductEntry() {

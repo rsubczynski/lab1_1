@@ -15,4 +15,9 @@ public class Discount {
     public String getDiscountCause() {
         return discountCause;
     }
+
+    public Discount(String discountCause, BigDecimal discount) {
+        this.discountCause = discountCause;
+        this.discount = discount;
+    }
 }
