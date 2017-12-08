@@ -57,7 +57,7 @@ public class OfferItem {
     @Override
     public boolean equals(Object obj) {
 
-        IsThisSameObject(obj);
+        isThisSameObject(obj);
         isntNullObject(obj);
         IsThisSameClass(obj);
         OfferItem other = (OfferItem) obj;
@@ -114,7 +114,7 @@ public class OfferItem {
         return obj != null;
     }
 
-    private boolean IsThisSameObject(Object object) {
+    private boolean isThisSameObject(Object object) {
         return this == object;
     }
 
@@ -128,13 +128,7 @@ public class OfferItem {
         isValidStringFiled(productEntry.getProductId(), other.productEntry.getProductId());
         isValidBigDecimalFiled(productEntry.getProductPrice(), other.productEntry.getProductPrice());
 
-        if (!IsThisSameInt(other))
-            return false;
-
-        if (!IsThisSameString(other))
-            return false;
-
-        return IsDeltaInnerZero(other, delta);
+        return IsThisSameInt(other) && IsThisSameString(other) && IsDeltaInnerZero(other, delta);
     }
 
     private boolean IsDeltaInnerZero(OfferItem other, double delta) {
