@@ -58,23 +58,31 @@ public class OfferItem {
     public boolean equals(Object obj) {
 
         IsThisSameObject(obj);
-        IsntNullObject(obj);
+        isntNullObject(obj);
         IsThisSameClass(obj);
         OfferItem other = (OfferItem) obj;
-        isValidBigDecimalFiled(discountEntry.getDiscount(),other.discountEntry.getDiscount());
-        isValidBigDecimalFiled(productEntry.getProductPrice(),other.productEntry.getProductPrice());
-        isValidStringFiled(productEntry.getProductId(),other.productEntry.getProductId());
-        isValidStringFiled(productEntry.getProductName(),other.productEntry.getProductName());
-        isValidBigDecimalFiled(productEntry.getTotalCost(),other.productEntry.getTotalCost());
+        isValidBigDecimalFiled(discountEntry.getDiscount(), other.discountEntry.getDiscount());
+        isValidBigDecimalFiled(productEntry.getProductPrice(), other.productEntry.getProductPrice());
+        isValidStringFiled(productEntry.getProductId(), other.productEntry.getProductId());
+        isValidStringFiled(productEntry.getProductName(), other.productEntry.getProductName());
+        isValidBigDecimalFiled(productEntry.getTotalCost(), other.productEntry.getTotalCost());
 
-        if (productEntry.getProductType() != other.productEntry.getProductType())
+        if (!IsThisSameInt(other))
             return false;
 
-        if (productEntry.getQuantity() != other.productEntry.getQuantity())
+        if (!IsThisSameString(other))
             return false;
 
 
         return true;
+    }
+
+    private boolean IsThisSameString(OfferItem other) {
+        return productEntry.getQuantity() != other.productEntry.getQuantity();
+    }
+
+    private boolean IsThisSameInt(OfferItem other) {
+        return productEntry.getProductType() != other.productEntry.getProductType();
     }
 
     private boolean isValidBigDecimalFiled(BigDecimal entity, BigDecimal other) {
@@ -103,7 +111,7 @@ public class OfferItem {
         return getClass() == obj.getClass();
     }
 
-    private boolean IsntNullObject(Object obj) {
+    private boolean isntNullObject(Object obj) {
         return obj != null;
     }
 
@@ -117,25 +125,14 @@ public class OfferItem {
      * @return
      */
     public boolean sameAs(OfferItem other, double delta) {
-        if (productEntry.getProductName() == null) {
-            if (other.productEntry.getProductName() != null)
-                return false;
-        } else if (!productEntry.getProductName().equals(other.productEntry.getProductName()))
-            return false;
-        if (productEntry.getProductPrice() == null) {
-            if (other.productEntry.getProductPrice() != null)
-                return false;
-        } else if (!productEntry.getProductPrice().equals(other.productEntry.getProductPrice()))
-            return false;
-        if (productEntry.getProductId() == null) {
-            if (other.productEntry.getProductId() != null)
-                return false;
-        } else if (!productEntry.getProductId().equals(other.productEntry.getProductId()))
-            return false;
-        if (productEntry.getProductType() != other.productEntry.getProductType())
+        isValidStringFiled(productEntry.getProductName(),other.productEntry.getProductName());
+        isValidStringFiled(productEntry.getProductId(),other.productEntry.getProductId());
+        isValidBigDecimalFiled(productEntry.getProductPrice(),other.productEntry.getProductPrice());
+
+        if (!IsThisSameInt(other))
             return false;
 
-        if (productEntry.getQuantity() != other.productEntry.getQuantity())
+        if (!IsThisSameString(other))
             return false;
 
         BigDecimal max, min;
@@ -151,6 +148,10 @@ public class OfferItem {
         BigDecimal acceptableDelta = max.multiply(new BigDecimal(delta / 100));
 
         return acceptableDelta.compareTo(difference) > 0;
+    }
+
+    private boolean isThisSameBigDecimal(OfferItem other) {
+        return productEntry.getProductId().equals(other.productEntry.getProductId());
     }
 
     public Product getProductEntry() {
