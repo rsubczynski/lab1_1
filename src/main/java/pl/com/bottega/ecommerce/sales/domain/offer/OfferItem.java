@@ -68,31 +68,35 @@ public class OfferItem {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        OfferItem other = (OfferItem) obj;
+        if (isNullObject((OfferItem) obj)) return false;
+        return true;
+    }
+
+    private boolean isNullObject(OfferItem obj) {
+        OfferItem other = obj;
         if (discount == null) {
             if (other.discount != null)
-                return false;
+                return true;
         } else if (!discount.equals(other.discount))
-            return false;
+            return true;
         if (product == null) {
             if (other.product != null)
-                return false;
+                return true;
         } else if (!product.equals(other.product))
-            return false;
+            return true;
         if (productPrice == null) {
             if (other.productPrice != null)
-                return false;
+                return true;
         } else if (!productPrice.equals(other.productPrice))
-            return false;
+            return true;
         if (quantity != other.quantity)
-            return false;
+            return true;
         if (totalCost == null) {
             if (other.totalCost != null)
-                return false;
+                return true;
         } else if (!totalCost.equals(other.totalCost))
-            return false;
-        return true;
-
+            return true;
+        return false;
     }
 
     /**
