@@ -1,47 +1,23 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class Product {
 
-    public Product(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate, String productType, int quantity, BigDecimal totalCost, String currency) {
+    private String productId;
+    private String productName;
+    private Date productSnapshotDate;
+    private String productType;
+
+    public Product(String productId, String productName, Date productSnapshotDate, String productType) {
         this.productId = productId;
-        this.productPrice = productPrice;
         this.productName = productName;
         this.productSnapshotDate = productSnapshotDate;
         this.productType = productType;
-        this.quantity = quantity;
-        this.totalCost = totalCost;
-        this.currency = currency;
     }
-
-    private String productId;
-
-    private BigDecimal productPrice;
-
-    private String productName;
-
-    private Date productSnapshotDate;
-
-    private String productType;
-
-    private int quantity;
-
-    private BigDecimal totalCost;
-
-    private String currency;
 
     public String getProductId() {
         return productId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public BigDecimal getProductPrice() {
-        return productPrice;
     }
 
     public String getProductName() {
@@ -56,15 +32,36 @@ public class Product {
         return productType;
     }
 
-    public void setTotalCost(BigDecimal totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public BigDecimal getTotalCost() {
-        return totalCost;
-    }
-
-    public String getTotalCostCurrency() {
-        return currency;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Product other = (Product) obj;
+        if (productId == null) {
+            if (other.productId != null)
+                return false;
+        } else if (!productId.equals(other.productId))
+            return false;
+        if (productName == null) {
+            if (other.productName != null)
+                return false;
+        } else if (!productName.equals(other.productName))
+            return false;
+        if (productSnapshotDate == null) {
+            if (other.productSnapshotDate != null)
+                return false;
+        } else if (!productSnapshotDate.equals(other.productSnapshotDate))
+            return false;
+        if (productType == null) {
+            if (other.productType != null)
+                return false;
+        } else if (!productType.equals(other.productType))
+            return false;
+        return true;
     }
 }
+
