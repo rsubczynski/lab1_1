@@ -67,20 +67,20 @@ public class OfferItem {
         isValidStringFiled(productEntry.getProductName(), other.productEntry.getProductName());
         isValidBigDecimalFiled(productEntry.getTotalCost(), other.productEntry.getTotalCost());
 
-        if (!IsThisSameInt(other))
+        if (!IsThisSameProductType(other))
             return false;
 
-        if (!IsThisSameString(other))
+        if (!IsThisSameQueantity(other))
             return false;
 
         return true;
     }
 
-    private boolean IsThisSameString(OfferItem other) {
+    private boolean IsThisSameQueantity(OfferItem other) {
         return productEntry.getQuantity() != other.productEntry.getQuantity();
     }
 
-    private boolean IsThisSameInt(OfferItem other) {
+    private boolean IsThisSameProductType(OfferItem other) {
         return productEntry.getProductType() != other.productEntry.getProductType();
     }
 
@@ -128,7 +128,7 @@ public class OfferItem {
         isValidStringFiled(productEntry.getProductId(), other.productEntry.getProductId());
         isValidBigDecimalFiled(productEntry.getProductPrice(), other.productEntry.getProductPrice());
 
-        return IsThisSameInt(other) && IsThisSameString(other) && IsDeltaInnerZero(other, delta);
+        return IsThisSameProductType(other) && IsThisSameQueantity(other) && IsDeltaInnerZero(other, delta);
     }
 
     private boolean IsDeltaInnerZero(OfferItem other, double delta) {
