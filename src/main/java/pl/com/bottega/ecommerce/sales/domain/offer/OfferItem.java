@@ -135,10 +135,6 @@ public class OfferItem {
         return totalCost.getValue().compareTo(other.totalCost.getValue()) > 0 ? other.totalCost.getValue() : totalCost.getValue();
     }
 
-    BigDecimal getDifrence(){
-        return null;
-    }
-
     public String getProductId() {
         return product.getProductId();
     }
@@ -178,5 +174,4 @@ public class OfferItem {
     public int getQuantity() {
         return quantity;
     }
-
 }
