@@ -45,8 +45,7 @@ public class OfferItem {
                 productPrice.getCurrency());
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((discount == null) ? 0 : discount.hashCode());
@@ -59,10 +58,10 @@ public class OfferItem {
         return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    @Override public boolean equals(Object obj) {
         Boolean isValid = validObject(obj);
-        if (isValid != null) return isValid;
+        if (isValid != null)
+            return isValid;
         return !isNullOfferItem((OfferItem) obj);
     }
 
@@ -145,11 +144,15 @@ public class OfferItem {
     }
 
     private BigDecimal getMaximum(OfferItem other) {
-        return totalCost.getValue().compareTo(other.totalCost.getValue()) > 0 ? totalCost.getValue() : other.totalCost.getValue();
+        return totalCost.getValue().compareTo(other.totalCost.getValue()) > 0 ?
+                totalCost.getValue() :
+                other.totalCost.getValue();
     }
 
     private BigDecimal getMinimum(OfferItem other) {
-        return totalCost.getValue().compareTo(other.totalCost.getValue()) > 0 ? other.totalCost.getValue() : totalCost.getValue();
+        return totalCost.getValue().compareTo(other.totalCost.getValue()) > 0 ?
+                other.totalCost.getValue() :
+                totalCost.getValue();
     }
 
     public String getProductId() {

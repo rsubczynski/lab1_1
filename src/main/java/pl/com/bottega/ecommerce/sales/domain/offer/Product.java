@@ -32,10 +32,10 @@ public class Product {
         return productType;
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    @Override public boolean equals(Object obj) {
         Boolean isValid = validObject(obj);
-        if (isValid != null) return isValid;
+        if (isValid != null)
+            return isValid;
         return isNullProducts((Product) obj);
     }
 
