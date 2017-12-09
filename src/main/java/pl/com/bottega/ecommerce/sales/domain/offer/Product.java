@@ -34,13 +34,23 @@ public class Product {
 
     @Override
     public boolean equals(Object obj) {
+        Boolean isValid = validObject(obj);
+        if (isValid != null) return isValid;
+        return isNullProducts((Product) obj);
+    }
+
+    private Boolean validObject(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Product other = (Product) obj;
+        return null;
+    }
+
+    private boolean isNullProducts(Product obj) {
+        Product other = obj;
         if (productId == null) {
             if (other.productId != null)
                 return false;

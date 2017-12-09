@@ -61,40 +61,43 @@ public class OfferItem {
 
     @Override
     public boolean equals(Object obj) {
+        Boolean isValid = validObject(obj);
+        if (isValid != null) return isValid;
+        return !isNullOfferItem((OfferItem) obj);
+    }
 
+    private Boolean validObject(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
-        if (isNullObject((OfferItem) obj)) return false;
-        return true;
+        return null;
     }
 
-    private boolean isNullObject(OfferItem obj) {
-        OfferItem other = obj;
+    private boolean isNullOfferItem(OfferItem obj) {
         if (discount == null) {
-            if (other.discount != null)
+            if (obj.discount != null)
                 return true;
-        } else if (!discount.equals(other.discount))
+        } else if (!discount.equals(obj.discount))
             return true;
         if (product == null) {
-            if (other.product != null)
+            if (obj.product != null)
                 return true;
-        } else if (!product.equals(other.product))
+        } else if (!product.equals(obj.product))
             return true;
         if (productPrice == null) {
-            if (other.productPrice != null)
+            if (obj.productPrice != null)
                 return true;
-        } else if (!productPrice.equals(other.productPrice))
+        } else if (!productPrice.equals(obj.productPrice))
             return true;
-        if (quantity != other.quantity)
+        if (quantity != obj.quantity)
             return true;
         if (totalCost == null) {
-            if (other.totalCost != null)
+            if (obj.totalCost != null)
                 return true;
-        } else if (!totalCost.equals(other.totalCost))
+        } else if (!totalCost.equals(obj.totalCost))
             return true;
         return false;
     }
